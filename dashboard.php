@@ -338,8 +338,8 @@ $result = $conn->query($sql);
         <ul id="cartItems" class="list-group">
             <li class="list-group-item">Your cart is empty.</li>
         </ul>
-        <div class="mt-3">
-            <p id="cartTotalAmount"><strong>Total Amount: ₱0.00</strong></p>
+        <div class="total-bill">
+            <p><strong>Total Bill: ₱<span id="totalBill">0.00</span></strong></p>
         </div>
         <!-- Alert box -->
         <div class="alert alert-danger mt-3" role="alert">

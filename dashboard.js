@@ -691,12 +691,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 document.addEventListener('DOMContentLoaded', function () {
+    let overallTotalBill = 0;
+
+    // Function to update the total bill in the UI
+    function updateTotalBill(amount) {
+        overallTotalBill += amount;
+        document.getElementById('totalBill').textContent = overallTotalBill.toFixed(2);
+    }
+
     // Function to update cart items based on the category
     function updateCartItems(category, productId) {
         const cartItems = document.getElementById('cartItems');
-        const productElement = document.querySelector(`.add-to-cart[data-product-id="${productId}"]`);
+        let totalItemPrice = 0; // To track the total price of each item
 
         if (category === 'hotel') {
+            const productElement = document.querySelector(`.add-to-cart[data-product-id="${productId}"]`);
             const checkInDate = document.getElementById('modalCheckInDate').value;
             const checkOutDate = document.getElementById('modalCheckOutDate').value;
             const roomsCount = parseInt(document.getElementById('roomsCount').value);
@@ -723,6 +732,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const totalPriceAdults = priceAdult * adultsCount;
             const totalPriceKids = priceKid * kidsCount;
+            totalItemPrice = totalPriceAdults + totalPriceKids; // Calculate the total for this hotel item
 
             const newItem = `
                 <li class="list-group-item">
@@ -738,12 +748,13 @@ document.addEventListener('DOMContentLoaded', function () {
                             <p>Kids: ${kidsCount}</p>
                             <p>Total Price (Adults): ₱${totalPriceAdults.toFixed(2)}</p>
                             <p>Total Price (Kids): ₱${totalPriceKids.toFixed(2)}</p>
-                            <p><strong>Total: ₱${(totalPriceAdults + totalPriceKids).toFixed(2)}</strong></p>
+                            <p><strong>Total: ₱${totalItemPrice.toFixed(2)}</strong></p>
                         </div>
                     </div>
                 </li>
             `;
             cartItems.innerHTML += newItem;
+            updateTotalBill(totalItemPrice);
 
         } else if (category === 'ferry') {
             const ferryDate = document.getElementById('ferryDate').value;
@@ -759,7 +770,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const kidPrice = parseFloat(document.getElementById('kidPrice').textContent.replace('₱', ''));
             const toddlerPrice = parseFloat(document.getElementById('toddlerPrice').textContent.replace('₱', ''));
 
-            const totalPrice = (adultQty * adultPrice) + (seniorQty * seniorPrice) + (kidQty * kidPrice) + (toddlerQty * toddlerPrice);
+            totalItemPrice = (adultQty * adultPrice) + (seniorQty * seniorPrice) + (kidQty * kidPrice) + (toddlerQty * toddlerPrice);
 
             const newItem = `
                 <li class="list-group-item">
@@ -772,19 +783,21 @@ document.addEventListener('DOMContentLoaded', function () {
                             <p>Seniors: ${seniorQty} x ₱${seniorPrice.toFixed(2)} = ₱${(seniorQty * seniorPrice).toFixed(2)}</p>
                             <p>Kids: ${kidQty} x ₱${kidPrice.toFixed(2)} = ₱${(kidQty * kidPrice).toFixed(2)}</p>
                             <p>Toddlers: ${toddlerQty} x ₱${toddlerPrice.toFixed(2)} = ₱${(toddlerQty * toddlerPrice).toFixed(2)}</p>
-                            <p><strong>Total Price: ₱${totalPrice.toFixed(2)}</strong></p>
+                            <p><strong>Total Price: ₱${totalItemPrice.toFixed(2)}</strong></p>
                         </div>
                     </div>
                 </li>
             `;
             cartItems.innerHTML += newItem;
+            updateTotalBill(totalItemPrice);
 
         } else if (category === 'meal') {
+            const productElement = document.querySelector(`.add-to-cart[data-product-id="${productId}"]`);
             const mealQuantity = parseInt(document.getElementById('mealQuantityModal').value);
             const mealPrice = parseFloat(productElement.getAttribute('data-meal-price'));
             const mealImage = productElement.getAttribute('data-meal-image');
 
-            const totalMealPrice = mealPrice * mealQuantity;
+            totalItemPrice = mealPrice * mealQuantity;
 
             const newItem = `
                 <li class="list-group-item">
@@ -794,14 +807,16 @@ document.addEventListener('DOMContentLoaded', function () {
                             <p><strong>${productElement.getAttribute('data-meal-name')}</strong></p>
                             <p>Quantity: ${mealQuantity}</p>
                             <p>Price per Meal: ₱${mealPrice.toFixed(2)}</p>
-                            <p><strong>Total Price: ₱${totalMealPrice.toFixed(2)}</strong></p>
+                            <p><strong>Total Price: ₱${totalItemPrice.toFixed(2)}</strong></p>
                         </div>
                     </div>
                 </li>
             `;
             cartItems.innerHTML += newItem;
+            updateTotalBill(totalItemPrice);
 
         } else if (category === 'tour') {
+            const productElement = document.querySelector(`.add-to-cart[data-product-id="${productId}"]`);
             const tourName = productElement.getAttribute('data-tour-name');
             const adultsCount = parseInt(document.getElementById('adultsCount').value);
             const kidsCount = parseInt(document.getElementById('kidsCount').value);
@@ -810,6 +825,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const totalPriceAdults = adultsCount * adultPrice;
             const totalPriceKids = kidsCount * kidPrice;
+            totalItemPrice = totalPriceAdults + totalPriceKids;
 
             const newItem = `
                 <li class="list-group-item">
@@ -818,12 +834,13 @@ document.addEventListener('DOMContentLoaded', function () {
                             <p><strong>${tourName}</strong></p>
                             <p>Adults: ${adultsCount} x ₱${adultPrice.toFixed(2)} = ₱${totalPriceAdults.toFixed(2)}</p>
                             <p>Kids: ${kidsCount} x ₱${kidPrice.toFixed(2)} = ₱${totalPriceKids.toFixed(2)}</p>
-                            <p><strong>Total Price: ₱${(totalPriceAdults + totalPriceKids).toFixed(2)}</strong></p>
+                            <p><strong>Total Price: ₱${totalItemPrice.toFixed(2)}</strong></p>
                         </div>
                     </div>
                 </li>
             `;
             cartItems.innerHTML += newItem;
+            updateTotalBill(totalItemPrice);
         }
     }
 
@@ -845,6 +862,7 @@ document.addEventListener('DOMContentLoaded', function () {
         updateCartItems('tour', this.getAttribute('data-tour-id'));
     });
 });
+
 
 document.addEventListener('DOMContentLoaded', function () {
     const proceedToCheckoutButton = document.getElementById('proceedToCheckout');
@@ -956,66 +974,39 @@ document.addEventListener('DOMContentLoaded', function () {
         checkoutModal.show();
     }
 });
-document.addEventListener('click', function(event) {
-    if (event.target && event.target.id === 'confirmBookingBtn') {
+document.getElementById('confirmBookingBtn').addEventListener('click', function () {
+    const contactNumber = document.getElementById('contactNumber').value;
+    const totalAmount = document.getElementById('totalPriceSummary').innerText.replace('Total Amount: ₱', '');
+    
+    // Prepare the data to send
+    const bookingData = {
+        username: "<?php echo htmlspecialchars($user['username']); ?>",
+        email: "<?php echo htmlspecialchars($user['email']); ?>",
+        contactNumber: contactNumber,
+        totalAmount: totalAmount,
         
-        const cartItems = document.querySelectorAll('#cartItems .list-group-item');
-        const cartSummary = [];
+    };
 
-        cartItems.forEach(function (item) {
-            const productName = item.querySelector('p strong').innerText;
-
-            const checkInDate = item.querySelector('p:nth-child(2)') ? item.querySelector('p:nth-child(2)').innerText.replace('Check-In Date: ', '') : null;
-            const checkOutDate = item.querySelector('p:nth-child(3)') ? item.querySelector('p:nth-child(3)').innerText.replace('Check-Out Date: ', '') : null;
-            const nights = item.querySelector('p:nth-child(4)') ? parseInt(item.querySelector('p:nth-child(4)').innerText.replace('Nights: ', '')) : null;
-            const rooms = item.querySelector('p:nth-child(5)') ? parseInt(item.querySelector('p:nth-child(5)').innerText.replace('Rooms: ', '')) : null;
-            const adults = item.querySelector('p:nth-child(6)') ? parseInt(item.querySelector('p:nth-child(6)').innerText.replace('Adults: ', '')) : null;
-            const kids = item.querySelector('p:nth-child(7)') ? parseInt(item.querySelector('p:nth-child(7)').innerText.replace('Kids: ', '')) : null;
-            const totalPrice = parseFloat(item.querySelector('p strong').innerText.replace('Total: ₱', ''));
-
-            cartSummary.push({
-                productName: productName,
-                checkInDate: checkInDate,
-                checkOutDate: checkOutDate,
-                nights: nights,
-                rooms: rooms,
-                adults: adults,
-                kids: kids,
-                totalPrice: totalPrice
-            });
-        });
-
-        const totalAmount = cartSummary.reduce((acc, item) => acc + item.totalPrice, 0);
-
-        const bookingData = {
-            username: document.getElementById('usernameInput').value,
-            email: document.getElementById('emailInput').value,
-            contact_number: document.getElementById('contactNumber').value,
-            cartSummary: cartSummary,
-            total_price: totalAmount
-        };
-
-        fetch('confirmBooking.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(bookingData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert("Booking confirmed!");
-            } else {
-                alert("Error confirming booking: " + data.message);
-            }
-        })
-        .catch(error => {
-            console.error("Error:", error);
-        });
-    }
+    // Send data to server via AJAX
+    fetch('confirmBooking.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(bookingData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Booking confirmed!');
+            // Optionally close the modal
+            $('#summaryModal').modal('hide');
+        } else {
+            // Handle error case
+            alert('Error confirming booking: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 });
-
-
-   
-
