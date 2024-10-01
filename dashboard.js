@@ -219,6 +219,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const productId = this.getAttribute('data-product-id');
         const checkInDate = document.getElementById('modalCheckInDate').value;
         const checkOutDate = document.getElementById('modalCheckOutDate').value;
+        const totalPriceAdults = document.getElementById('totalPriceAdults').innerHTML.replace("Total Price (Adults): ₱", "");
+        const totalPriceKids = document.getElementById('totalPriceKids').innerHTML.replace("Total Price (Kids): ₱", "");
+        const totalValue = parseInt(totalPriceAdults) + parseInt(totalPriceKids);
+
+        document.getElementById('totalBill').textContent = totalValue;
 
         if (!checkInDate || !checkOutDate) {
             alert('Please select both check-in and check-out dates.');
