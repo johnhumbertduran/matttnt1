@@ -1,9 +1,9 @@
 <?php
 // Database connection
 $servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "matttnt";
+$username = "root"; 
+$password = ""; t
+$dbname = "matttnt"; 
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 $user_username = $_POST['username'];
 $user_email = $_POST['email'];
 $contact_number = $_POST['contact_number'];
-$cartSummary = json_decode($_POST['cartSummary'], true);
+$cartSummary = json_decode($_POST['cartSummary'], true); 
 foreach ($cartSummary as $item) {
     $product_name = $item['productName'];
     $check_in_date = isset($item['checkInDate']) ? $item['checkInDate'] : NULL;
@@ -37,3 +37,4 @@ $conn->close();
 
 // Return a success message
 echo json_encode(['status' => 'success', 'message' => 'Booking confirmed successfully!']);
+?>

@@ -1,47 +1,47 @@
 
-document.addEventListener('DOMContentLoaded', function () {
-    const featureElements = document.querySelectorAll('.features-list');
+    document.addEventListener('DOMContentLoaded', function() {
+        const featureElements = document.querySelectorAll('.features-list');
+        
+        featureElements.forEach(function(element) {
+            const dataFeatures = element.getAttribute('data-features');
+            
+            if (dataFeatures) {
+                const features = dataFeatures.split(',');
+                let featureIcons = '';
+                
+                features.forEach(function(feature) {
+                    feature = feature.trim();
+                    if (feature === 'Free Wifi') {
+                        featureIcons += '<i class="fas fa-wifi"></i> Free Wifi<br>';
+                    } else if (feature === 'Pet Friendly') {
+                        featureIcons += '<i class="fas fa-paw"></i> Pet Friendly<br>';
+                    } else if (feature === 'Swimming Pool') {
+                        featureIcons += '<i class="fas fa-swimmer"></i> Swimming Pool<br>';
+                    } else if (feature === 'Free Breakfast') {
+                        featureIcons += '<i class="fas fa-coffee"></i> Free Breakfast<br>';
+                    } else if (feature === 'Double Sized Bed') {
+                        featureIcons += '<i class="fas fa-bed"></i> Double Bed<br>';
+                    } else if (feature === 'Beachfront') {
+                        featureIcons += '<i class="fas fa-sun"></i> Beachfront<br>';
+                    } else if (feature === 'Non Beachfront') {
+                        featureIcons += '<i class="fas fa-home"></i> Non Beachfront<br>';
+                    } else if (feature === 'With Kitchen') {
+                        featureIcons += '<i class="fas fa-utensils"></i> With Kitchen<br>';
+                    } else if (feature === 'With Grilling Area') {
+                        featureIcons += '<i class="fas fa-fire"></i> With Grilling Area<br>';
+                    } else if (feature === 'Non Smoking') {
+                        featureIcons += '<i class="fas fa-smoking-ban"></i> Non Smoking<br>';
+                    } else if (['2 Pax', '3 Pax', '4 Pax', '5 Pax', '6 Pax'].includes(feature)) {
+                        featureIcons += '<i class="fas fa-users"></i> Capacity: ' + feature + '<br>';
+                    }
+                });
 
-    featureElements.forEach(function (element) {
-        const dataFeatures = element.getAttribute('data-features');
-
-        if (dataFeatures) {
-            const features = dataFeatures.split(',');
-            let featureIcons = '';
-
-            features.forEach(function (feature) {
-                feature = feature.trim();
-                if (feature === 'Free Wifi') {
-                    featureIcons += '<i class="fas fa-wifi"></i> Free Wifi<br>';
-                } else if (feature === 'Pet Friendly') {
-                    featureIcons += '<i class="fas fa-paw"></i> Pet Friendly<br>';
-                } else if (feature === 'Swimming Pool') {
-                    featureIcons += '<i class="fas fa-swimmer"></i> Swimming Pool<br>';
-                } else if (feature === 'Free Breakfast') {
-                    featureIcons += '<i class="fas fa-coffee"></i> Free Breakfast<br>';
-                } else if (feature === 'Double Sized Bed') {
-                    featureIcons += '<i class="fas fa-bed"></i> Double Bed<br>';
-                } else if (feature === 'Beachfront') {
-                    featureIcons += '<i class="fas fa-sun"></i> Beachfront<br>';
-                } else if (feature === 'Non Beachfront') {
-                    featureIcons += '<i class="fas fa-home"></i> Non Beachfront<br>';
-                } else if (feature === 'With Kitchen') {
-                    featureIcons += '<i class="fas fa-utensils"></i> With Kitchen<br>';
-                } else if (feature === 'With Grilling Area') {
-                    featureIcons += '<i class="fas fa-fire"></i> With Grilling Area<br>';
-                } else if (feature === 'Non Smoking') {
-                    featureIcons += '<i class="fas fa-smoking-ban"></i> Non Smoking<br>';
-                } else if (['2 Pax', '3 Pax', '4 Pax', '5 Pax', '6 Pax'].includes(feature)) {
-                    featureIcons += '<i class="fas fa-users"></i> Capacity: ' + feature + '<br>';
-                }
-            });
-
-            element.innerHTML = featureIcons;
-        }
+                element.innerHTML = featureIcons;
+            }
+        });
     });
-});
-
-
+    
+    
 
 //this triggers the modal for date picker before confirming to add to cart
 document.addEventListener('DOMContentLoaded', function () {
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const productId = this.getAttribute('data-product-id');
             const capacity = this.getAttribute('data-capacity'); // Get the room capacity
 
-
+            
             const roomCapacityElement = document.getElementById('roomCapacity');
             if (roomCapacityElement) {
                 roomCapacityElement.textContent = `Room Capacity: ${capacity} persons`;
@@ -75,34 +75,34 @@ document.addEventListener('DOMContentLoaded', function () {
             // Store product ID for later use in the modal
             document.getElementById('confirmDate').setAttribute('data-product-id', productId);
 
-
+            
             storePriceData(this);
 
             // Show the date picker modal
             const datePickerModal = new bootstrap.Modal(document.getElementById('datePickerModal'));
             datePickerModal.show();
-
+            
         });
     });
 
     function storePriceData(button) {
-        // Fetch pricing data from data attributes
-        const price2d1nAdult = button.getAttribute('data-price-2d1n-adult');
-        const price2d1nKid = button.getAttribute('data-price-2d1n-kid');
-        const price3d2nAdult = button.getAttribute('data-price-3d2n-adult');
-        const price3d2nKid = button.getAttribute('data-price-3d2n-kid');
-        const price4d3nAdult = button.getAttribute('data-price-4d3n-adult');
-        const price4d3nKid = button.getAttribute('data-price-4d3n-kid');
+    // Fetch pricing data from data attributes
+    const price2d1nAdult = button.getAttribute('data-price-2d1n-adult');
+    const price2d1nKid = button.getAttribute('data-price-2d1n-kid');
+    const price3d2nAdult = button.getAttribute('data-price-3d2n-adult');
+    const price3d2nKid = button.getAttribute('data-price-3d2n-kid');
+    const price4d3nAdult = button.getAttribute('data-price-4d3n-adult');
+    const price4d3nKid = button.getAttribute('data-price-4d3n-kid');
 
-        // Store price data for later use in the confirm button
-        const confirmDateButton = document.getElementById('confirmDate');
-        confirmDateButton.setAttribute('data-price-2d1n-adult', price2d1nAdult);
-        confirmDateButton.setAttribute('data-price-2d1n-kid', price2d1nKid);
-        confirmDateButton.setAttribute('data-price-3d2n-adult', price3d2nAdult);
-        confirmDateButton.setAttribute('data-price-3d2n-kid', price3d2nKid);
-        confirmDateButton.setAttribute('data-price-4d3n-adult', price4d3nAdult);
-        confirmDateButton.setAttribute('data-price-4d3n-kid', price4d3nKid);
-    }
+    // Store price data for later use in the confirm button
+    const confirmDateButton = document.getElementById('confirmDate');
+    confirmDateButton.setAttribute('data-price-2d1n-adult', price2d1nAdult);
+    confirmDateButton.setAttribute('data-price-2d1n-kid', price2d1nKid);
+    confirmDateButton.setAttribute('data-price-3d2n-adult', price3d2nAdult);
+    confirmDateButton.setAttribute('data-price-3d2n-kid', price3d2nKid);
+    confirmDateButton.setAttribute('data-price-4d3n-adult', price4d3nAdult);
+    confirmDateButton.setAttribute('data-price-4d3n-kid', price4d3nKid);
+}
 
 
     function initializeDatePickers(fullyBookedDates) {
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
         function updateNights() {
             const checkInDate = new Date(checkInDateInput.value);
             const checkOutDate = new Date(checkOutDateInput.value);
-
+            
             if (!isNaN(checkInDate) && !isNaN(checkOutDate)) {
                 const timeDiff = checkOutDate - checkInDate;
                 const nights = Math.ceil(timeDiff / (1000 * 3600 * 24));
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         function disableFullyBookedDates(fullyBookedDates) {
-            checkInDateInput.addEventListener('input', function () {
+            checkInDateInput.addEventListener('input', function() {
                 const selectedDate = new Date(this.value);
                 const dateString = getFormattedDate(selectedDate);
 
@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
 
-            checkOutDateInput.addEventListener('input', function () {
+            checkOutDateInput.addEventListener('input', function() {
                 const selectedDate = new Date(this.value);
                 const dateString = getFormattedDate(selectedDate);
 
@@ -167,52 +167,52 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    function calculateTotalPrice(nights) {
-        const confirmDateButton = document.getElementById('confirmDate');
-        const totalPriceAdults = document.getElementById('totalPriceAdults');
-        const totalPriceKids = document.getElementById('totalPriceKids');
-        const pricePerHeadAdults = document.getElementById('pricePerHeadAdults');
-        const pricePerHeadKids = document.getElementById('pricePerHeadKids');
+   function calculateTotalPrice(nights) {
+    const confirmDateButton = document.getElementById('confirmDate');
+    const totalPriceAdults = document.getElementById('totalPriceAdults');
+    const totalPriceKids = document.getElementById('totalPriceKids');
+    const pricePerHeadAdults = document.getElementById('pricePerHeadAdults');
+    const pricePerHeadKids = document.getElementById('pricePerHeadKids');
 
-        // Fetch prices from the confirmDate button and ensure they're numbers
-        const price2d1nAdult = parseFloat(confirmDateButton.getAttribute('data-price-2d1n-adult')) || 0;
-        const price2d1nKid = parseFloat(confirmDateButton.getAttribute('data-price-2d1n-kid')) || 0;
-        const price3d2nAdult = parseFloat(confirmDateButton.getAttribute('data-price-3d2n-adult')) || 0;
-        const price3d2nKid = parseFloat(confirmDateButton.getAttribute('data-price-3d2n-kid')) || 0;
-        const price4d3nAdult = parseFloat(confirmDateButton.getAttribute('data-price-4d3n-adult')) || 0;
-        const price4d3nKid = parseFloat(confirmDateButton.getAttribute('data-price-4d3n-kid')) || 0;
+    // Fetch prices from the confirmDate button and ensure they're numbers
+    const price2d1nAdult = parseFloat(confirmDateButton.getAttribute('data-price-2d1n-adult')) || 0;
+    const price2d1nKid = parseFloat(confirmDateButton.getAttribute('data-price-2d1n-kid')) || 0;
+    const price3d2nAdult = parseFloat(confirmDateButton.getAttribute('data-price-3d2n-adult')) || 0;
+    const price3d2nKid = parseFloat(confirmDateButton.getAttribute('data-price-3d2n-kid')) || 0;
+    const price4d3nAdult = parseFloat(confirmDateButton.getAttribute('data-price-4d3n-adult')) || 0;
+    const price4d3nKid = parseFloat(confirmDateButton.getAttribute('data-price-4d3n-kid')) || 0;
 
-        let pricePerAdult = 0;
-        let pricePerKid = 0;
+    let pricePerAdult = 0;
+    let pricePerKid = 0;
 
-        // Determine the price per head based on the number of nights
-        if (nights === 1) {
-            pricePerAdult = price2d1nAdult;
-            pricePerKid = price2d1nKid;
-        } else if (nights === 2) {
-            pricePerAdult = price3d2nAdult;
-            pricePerKid = price3d2nKid;
-        } else if (nights >= 3) {
-            pricePerAdult = price4d3nAdult;
-            pricePerKid = price4d3nKid;
-        }
-
-        // Get the number of adults and kids
-        const adultsCount = parseInt(document.getElementById('adultsCount').value) || 0;
-        const kidsCount = parseInt(document.getElementById('kidsCount').value) || 0;
-
-        // Update the modal with the calculated prices per head
-        pricePerHeadAdults.textContent = `Price Per Adult: ₱${pricePerAdult.toFixed(2)}`;
-        pricePerHeadKids.textContent = `Price Per Kid: ₱${pricePerKid.toFixed(2)}`;
-
-        // Calculate and update the total price based on the number of guests
-        totalPriceAdults.textContent = `Total Price (Adults): ₱${(pricePerAdult * adultsCount).toFixed(2)}`;
-        totalPriceKids.textContent = `Total Price (Kids): ₱${(pricePerKid * kidsCount).toFixed(2)}`;
-
-
-        const totalAmount = (pricePerAdult * adultsCount) + (pricePerKid * kidsCount);
-        document.getElementById('totalAmount').textContent = `Total Amount: ₱${totalAmount.toFixed(2)}`;
+    // Determine the price per head based on the number of nights
+    if (nights === 1) {
+        pricePerAdult = price2d1nAdult;
+        pricePerKid = price2d1nKid;
+    } else if (nights === 2) {
+        pricePerAdult = price3d2nAdult;
+        pricePerKid = price3d2nKid;
+    } else if (nights >= 3) {
+        pricePerAdult = price4d3nAdult;
+        pricePerKid = price4d3nKid;
     }
+
+    // Get the number of adults and kids
+    const adultsCount = parseInt(document.getElementById('adultsCount').value) || 0;
+    const kidsCount = parseInt(document.getElementById('kidsCount').value) || 0;
+
+    // Update the modal with the calculated prices per head
+    pricePerHeadAdults.textContent = `Price Per Adult: ₱${pricePerAdult.toFixed(2)}`;
+    pricePerHeadKids.textContent = `Price Per Kid: ₱${pricePerKid.toFixed(2)}`;
+
+    // Calculate and update the total price based on the number of guests
+    totalPriceAdults.textContent = `Total Price (Adults): ₱${(pricePerAdult * adultsCount).toFixed(2)}`;
+    totalPriceKids.textContent = `Total Price (Kids): ₱${(pricePerKid * kidsCount).toFixed(2)}`;
+
+   
+    const totalAmount = (pricePerAdult * adultsCount) + (pricePerKid * kidsCount);
+    document.getElementById('totalAmount').textContent = `Total Amount: ₱${totalAmount.toFixed(2)}`;
+}
 
     // Handle date confirmation
     document.getElementById('confirmDate').addEventListener('click', function () {
@@ -236,72 +236,72 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     //Add items to the shopping cart
-    function updateCartItems(productId) {
-        const cartItems = document.getElementById('cartItems');
-        const productElement = document.querySelector(`.add-to-cart[data-product-id="${productId}"]`);
+ function updateCartItems(productId) {
+    const cartItems = document.getElementById('cartItems');
+    const productElement = document.querySelector(`.add-to-cart[data-product-id="${productId}"]`);
 
-        // Fetch check-in and check-out dates from the date picker modal
-        const checkInDate = document.getElementById('modalCheckInDate').value;
-        const checkOutDate = document.getElementById('modalCheckOutDate').value;
+    // Fetch check-in and check-out dates from the date picker modal
+    const checkInDate = document.getElementById('modalCheckInDate').value;
+    const checkOutDate = document.getElementById('modalCheckOutDate').value;
 
-        // Fetch room, adult, and kid counts from the modal
-        const roomsCount = parseInt(document.getElementById('roomsCount').value);
-        const adultsCount = parseInt(document.getElementById('adultsCount').value);
-        const kidsCount = parseInt(document.getElementById('kidsCount').value);
+    // Fetch room, adult, and kid counts from the modal
+    const roomsCount = parseInt(document.getElementById('roomsCount').value);
+    const adultsCount = parseInt(document.getElementById('adultsCount').value);
+    const kidsCount = parseInt(document.getElementById('kidsCount').value);
 
-        if (!checkInDate || !checkOutDate) {
-            alert("Please select both check-in and check-out dates.");
+    if (!checkInDate || !checkOutDate) {
+        alert("Please select both check-in and check-out dates.");
+        return;
+    }
+
+    // Calculate the number of nights based on check-in and check-out dates
+    const numberOfNights = calculateNights(checkInDate, checkOutDate);
+
+    if (numberOfNights <= 0) {
+        alert('Check-out date must be after check-in date.');
+        return;
+    }
+
+    if (cartItems.innerHTML.includes('Your cart is empty')) {
+        cartItems.innerHTML = ''; // Clear the empty cart message
+    }
+
+    if (productElement) {
+        const productName = productElement.getAttribute('data-product-name');
+        const productImage = productElement.getAttribute('data-product-image');
+        let priceAdult, priceKid;
+
+        // Select the correct price based on the number of nights and convert to numbers
+        if (numberOfNights === 1) {
+            priceAdult = parseFloat(productElement.getAttribute('data-price-2d1n-adult'));
+            priceKid = parseFloat(productElement.getAttribute('data-price-2d1n-kid'));
+        } else if (numberOfNights === 2) {
+            priceAdult = parseFloat(productElement.getAttribute('data-price-3d2n-adult'));
+            priceKid = parseFloat(productElement.getAttribute('data-price-3d2n-kid'));
+        } else if (numberOfNights === 3) {
+            priceAdult = parseFloat(productElement.getAttribute('data-price-4d3n-adult'));
+            priceKid = parseFloat(productElement.getAttribute('data-price-4d3n-kid'));
+        } else {
+            alert("We only support 2D1N, 3D2N, and 4D3N stays.");
             return;
         }
 
-        // Calculate the number of nights based on check-in and check-out dates
-        const numberOfNights = calculateNights(checkInDate, checkOutDate);
-
-        if (numberOfNights <= 0) {
-            alert('Check-out date must be after check-in date.');
+        // Validate that the prices are valid numbers
+        if (isNaN(priceAdult) || isNaN(priceKid)) {
+            alert("Invalid price data for this product.");
             return;
         }
 
-        if (cartItems.innerHTML.includes('Your cart is empty')) {
-            cartItems.innerHTML = ''; // Clear the empty cart message
-        }
+        // Calculate total prices for adults, kids, and rooms
+        const totalPriceAdults = priceAdult * adultsCount 
+        const totalPriceKids = priceKid * kidsCount 
+        
 
-        if (productElement) {
-            const productName = productElement.getAttribute('data-product-name');
-            const productImage = productElement.getAttribute('data-product-image');
-            let priceAdult, priceKid;
-
-            // Select the correct price based on the number of nights and convert to numbers
-            if (numberOfNights === 1) {
-                priceAdult = parseFloat(productElement.getAttribute('data-price-2d1n-adult'));
-                priceKid = parseFloat(productElement.getAttribute('data-price-2d1n-kid'));
-            } else if (numberOfNights === 2) {
-                priceAdult = parseFloat(productElement.getAttribute('data-price-3d2n-adult'));
-                priceKid = parseFloat(productElement.getAttribute('data-price-3d2n-kid'));
-            } else if (numberOfNights === 3) {
-                priceAdult = parseFloat(productElement.getAttribute('data-price-4d3n-adult'));
-                priceKid = parseFloat(productElement.getAttribute('data-price-4d3n-kid'));
-            } else {
-                alert("We only support 2D1N, 3D2N, and 4D3N stays.");
-                return;
-            }
-
-            // Validate that the prices are valid numbers
-            if (isNaN(priceAdult) || isNaN(priceKid)) {
-                alert("Invalid price data for this product.");
-                return;
-            }
-
-            // Calculate total prices for adults, kids, and rooms
-            const totalPriceAdults = priceAdult * adultsCount
-            const totalPriceKids = priceKid * kidsCount
-
-
-            // Create a new cart item with product details and the preferred check-in/check-out dates
-            const newItem = document.createElement('li');
-            newItem.classList.add('list-group-item');
-            newItem.setAttribute('data-category', 'hotel');
-            newItem.innerHTML = `
+        // Create a new cart item with product details and the preferred check-in/check-out dates
+        const newItem = document.createElement('li');
+        newItem.classList.add('list-group-item');
+        newItem.setAttribute('data-category', 'hotel');
+        newItem.innerHTML = `
             <div class="d-flex align-items-center">
                 <img src="${productImage}" alt="${productName}" class="cart-item-image me-3">
                 <div>
@@ -320,29 +320,29 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
             </div>
         `;
-            cartItems.appendChild(newItem);
+        cartItems.appendChild(newItem);
 
-        }
     }
+}
 
-    // Helper function to calculate the number of nights between two dates
-    function calculateNights(checkInDate, checkOutDate) {
-        const checkIn = new Date(checkInDate);
-        const checkOut = new Date(checkOutDate);
-        const timeDifference = checkOut.getTime() - checkIn.getTime();
-        const numberOfNights = timeDifference / (1000 * 3600 * 24); // Convert time difference to days
-        return numberOfNights;
-    }
+// Helper function to calculate the number of nights between two dates
+function calculateNights(checkInDate, checkOutDate) {
+    const checkIn = new Date(checkInDate);
+    const checkOut = new Date(checkOutDate);
+    const timeDifference = checkOut.getTime() - checkIn.getTime();
+    const numberOfNights = timeDifference / (1000 * 3600 * 24); // Convert time difference to days
+    return numberOfNights;
+}
 
 
     // Adjusting adults, kids, and rooms count
-    document.getElementById('plusAdults').addEventListener('click', function () {
+    document.getElementById('plusAdults').addEventListener('click', function() {
         const adultsCount = document.getElementById('adultsCount');
         adultsCount.value = parseInt(adultsCount.value) + 1;
         calculateTotalPrice(parseInt(document.getElementById('numberOfNights').textContent)); // Update total price
     });
 
-    document.getElementById('minusAdults').addEventListener('click', function () {
+    document.getElementById('minusAdults').addEventListener('click', function() {
         const adultsCount = document.getElementById('adultsCount');
         if (adultsCount.value > 1) {
             adultsCount.value = parseInt(adultsCount.value) - 1;
@@ -350,13 +350,13 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    document.getElementById('plusKids').addEventListener('click', function () {
+    document.getElementById('plusKids').addEventListener('click', function() {
         const kidsCount = document.getElementById('kidsCount');
         kidsCount.value = parseInt(kidsCount.value) + 1;
         calculateTotalPrice(parseInt(document.getElementById('numberOfNights').textContent)); // Update total price
     });
 
-    document.getElementById('minusKids').addEventListener('click', function () {
+    document.getElementById('minusKids').addEventListener('click', function() {
         const kidsCount = document.getElementById('kidsCount');
         if (kidsCount.value > 0) {
             kidsCount.value = parseInt(kidsCount.value) - 1;
@@ -364,12 +364,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    document.getElementById('plusRooms').addEventListener('click', function () {
+    document.getElementById('plusRooms').addEventListener('click', function() {
         const roomsCount = document.getElementById('roomsCount');
         roomsCount.value = parseInt(roomsCount.value) + 1;
     });
 
-    document.getElementById('minusRooms').addEventListener('click', function () {
+    document.getElementById('minusRooms').addEventListener('click', function() {
         const roomsCount = document.getElementById('roomsCount');
         if (roomsCount.value > 1) {
             roomsCount.value = parseInt(roomsCount.value) - 1;
@@ -384,7 +384,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Fetch ferry schedule, vessel type, and price data from the data attributes
         var ferrySchedule = button.getAttribute('data-ferry-schedule');
         var ferryVessel = button.getAttribute('data-ferry-vessel');
-        var prices = JSON.parse(button.getAttribute('data-prices'));
+        var prices = JSON.parse(button.getAttribute('data-prices')); 
 
         // Select DOM elements for schedule, class, and price fields
         var scheduleSelect = this.querySelector('#ferrySchedule');
@@ -396,7 +396,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Populate the schedule select options
         scheduleSelect.innerHTML = ''; // Clear previous options
-        var scheduleArray = ferrySchedule.split(',');
+        var scheduleArray = ferrySchedule.split(','); 
         scheduleArray.forEach(function (schedule) {
             var option = document.createElement('option');
             option.text = schedule.trim();
@@ -466,7 +466,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const cartItems = document.getElementById('cartItems');
             const newItem = document.createElement('li');
             newItem.classList.add('list-group-item');
-            newItem.setAttribute('data-category', 'ferry');
+             newItem.setAttribute('data-category', 'ferry');
             newItem.innerHTML = `
                 <div class="d-flex align-items-center">
                     <div>
@@ -488,7 +488,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             cartItems.appendChild(newItem);
 
-
+          
             clearModalInputs();
 
             // Close the modal
@@ -575,7 +575,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Create a new cart item for the meal
         const newItem = document.createElement('li');
         newItem.classList.add('list-group-item');
-        newItem.setAttribute('data-category', 'meal');
+         newItem.setAttribute('data-category', 'meal');
         newItem.innerHTML = `
             <div class="d-flex align-items-center">
                 <img src="${mealImage}" alt="${mealName}" class="cart-item-image me-3">
@@ -866,17 +866,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener('DOMContentLoaded', function () {
     const proceedToCheckoutButton = document.getElementById('proceedToCheckout');
-
+    
     if (proceedToCheckoutButton) {
         proceedToCheckoutButton.addEventListener('click', function () {
             const cartItems = document.querySelectorAll('#cartItems .list-group-item');
             let cartSummary = [];
             let totalAmount = 0; // Initialize the total order amount to accumulate prices
-
+            
             cartItems.forEach(function (item) {
                 let itemDetails = {};
                 const category = item.getAttribute('data-category');
-
+                
                 itemDetails.productName = item.querySelector('strong').textContent;
 
                 // Extract details based on category and update `totalAmount`
@@ -887,10 +887,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     itemDetails.rooms = item.querySelector('.mb-0:nth-child(5)').textContent;
                     itemDetails.adults = item.querySelector('.mb-0:nth-child(6)').textContent;
                     itemDetails.kids = item.querySelector('.mb-0:nth-child(7)').textContent;
-
+                    
                     // Parse the total price safely
-                    const totalPriceText = item.querySelector('.mb-0:nth-child(12)').textContent.replace('Total Price: ₱', '');
-                    const totalItemPrice = parseFloat(totalPriceText) || 0;
+                    const totalPriceText = item.querySelector('strong:last-child').textContent.replace('₱', '').replace(',', '');
+                    const totalItemPrice = parseFloat(totalPriceText) || 0; 
                     itemDetails.totalPrice = totalItemPrice;
                     totalAmount += totalItemPrice; // Add item total to overall total
                 } else if (category === 'ferry') {
@@ -906,7 +906,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     totalAmount += totalItemPrice; // Add item total to overall total
                 } else if (category === 'meal') {
                     itemDetails.quantity = item.querySelector('.mb-0:nth-child(2)').textContent;
-
+                    
                     const totalPriceText = item.querySelector('strong:last-child').textContent.replace('₱', '').replace(',', '');
                     const totalItemPrice = parseFloat(totalPriceText) || 0;
                     itemDetails.totalPrice = totalItemPrice;
@@ -932,7 +932,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function displayCartSummary(cartSummary, totalAmount) {
         const summaryModal = document.getElementById('summaryModalContent');
-        const totalPriceElement = document.getElementById('totalPriceSummary');
+        const totalPriceElement = document.getElementById('totalPriceSummary'); 
         summaryModal.innerHTML = ''; // Clear previous content
 
         cartSummary.forEach(function (item) {
@@ -977,14 +977,14 @@ document.addEventListener('DOMContentLoaded', function () {
 document.getElementById('confirmBookingBtn').addEventListener('click', function () {
     const contactNumber = document.getElementById('contactNumber').value;
     const totalAmount = document.getElementById('totalPriceSummary').innerText.replace('Total Amount: ₱', '');
-
+    
     // Prepare the data to send
     const bookingData = {
         username: "<?php echo htmlspecialchars($user['username']); ?>",
         email: "<?php echo htmlspecialchars($user['email']); ?>",
         contactNumber: contactNumber,
         totalAmount: totalAmount,
-
+        
     };
 
     // Send data to server via AJAX
@@ -995,18 +995,18 @@ document.getElementById('confirmBookingBtn').addEventListener('click', function 
         },
         body: JSON.stringify(bookingData)
     })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert('Booking confirmed!');
-                // Optionally close the modal
-                $('#summaryModal').modal('hide');
-            } else {
-                // Handle error case
-                alert('Error confirming booking: ' + data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Booking confirmed!');
+            // Optionally close the modal
+            $('#summaryModal').modal('hide');
+        } else {
+            // Handle error case
+            alert('Error confirming booking: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 });
