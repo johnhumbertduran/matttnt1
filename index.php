@@ -2,9 +2,9 @@
 session_start();
 include 'db_connection.php';
 
-$error_message = ''; 
-$success_message = ''; 
-$show_login_form = false; 
+$error_message = '';
+$success_message = '';
+$show_login_form = false;
 
 // Handle successful registration message
 if (isset($_GET['registration']) && $_GET['registration'] == 'success') {
@@ -69,240 +69,242 @@ $conn->close();
 
     <style>
         /* General Styling */
-body, html {
-    font-family: 'Roboto', sans-serif;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    scroll-behavior: smooth; 
+        body,
+        html {
+            font-family: 'Roboto', sans-serif;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
 
-/* Navbar Section */
-.navbar {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    padding: 20px 50px;
-    z-index: 10;
-    background-color: #f8f9fa; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-}
+        /* Navbar Section */
+        .navbar {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            z-index: 10;
+            background-color: #f8f9fa;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
-.navbar-brand img {
-    width: 70px;
-}
+        .navbar-brand img {
+            width: 70px;
+        }
 
-.navbar-nav .nav-link {
-    color: #333 !important; 
-    font-size: 14px;
-    font-weight: 500;
-    margin-left: 20px;
-    transition: color 0.3s ease;
-}
+        .navbar-nav .nav-link {
+            color: #333 !important;
+            font-size: 14px;
+            font-weight: 500;
+            margin-left: 20px;
+            transition: color 0.3s ease;
+        }
 
-.navbar-nav .nav-link:hover {
-    color: #0056b3 !important; 
-}
+        .navbar-nav .nav-link:hover {
+            color: #0056b3 !important;
+        }
 
-.navbar-toggler {
-    border: none;
-    color: #333; 
-}
+        .navbar-toggler {
+            border: none;
+            color: #333;
+        }
 
-/* Adjusting the button styles */
-.navbar .btn-primary {
-    background-color: #0056b3;
-    border-color: #0056b3;
-    color: white;
-    transition: all 0.3s ease;
-}
+        /* Adjusting the button styles */
+        .navbar .btn-primary {
+            background-color: #0056b3;
+            border-color: #0056b3;
+            color: white;
+            transition: all 0.3s ease;
+        }
 
-.navbar .btn-primary:hover {
-    background-color: #004494;
-    border-color: #004494;
-}
+        .navbar .btn-primary:hover {
+            background-color: #004494;
+            border-color: #004494;
+        }
 
-.navbar .btn-outline-primary {
-    color: #0056b3;
-    border-color: #0056b3;
-    transition: all 0.3s ease;
-}
+        .navbar .btn-outline-primary {
+            color: #0056b3;
+            border-color: #0056b3;
+            transition: all 0.3s ease;
+        }
 
-.navbar .btn-outline-primary:hover {
-    background-color: #0056b3;
-    color: white;
-    border-color: #0056b3;
-}
+        .navbar .btn-outline-primary:hover {
+            background-color: #0056b3;
+            color: white;
+            border-color: #0056b3;
+        }
 
-/* Hero Section */
-.hero {
-    background: url('images/hero.png') no-repeat center center;
-    background-size: cover;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    text-align: center;
-    position: relative;
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.4);
-}
+        /* Hero Section */
+        .hero {
+            background: url('images/hero.png') no-repeat center center;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.4);
+        }
 
-.hero h1 {
-    font-size: 4rem;
-    font-weight: 800;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
-    margin-bottom: 20px;
-}
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+            margin-bottom: 20px;
+        }
 
-.hero p {
-    font-size: 1.5rem;
-    margin-top: 10px;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0.9, 0.9);
-}
+        .hero p {
+            font-size: 1.5rem;
+            margin-top: 10px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0.9, 0.9);
+        }
 
-.hero .btn {
-    margin-top: 20px;
-    font-size: 1.2rem;
-    padding: 12px 25px;
-    border-radius: 30px;
-    transition: all 0.3s ease;
-}
+        .hero .btn {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            padding: 12px 25px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
 
-.hero .btn:hover {
-    background-color: #0056b3;
-    transform: scale(1.1);
-}
+        .hero .btn:hover {
+            background-color: #0056b3;
+            transform: scale(1.1);
+        }
 
-/* Why Choose Us Section */
-.why-choose-us {
-    padding: 80px 0;
-    background-color: #f7f7f7;
-    text-align: center;
-}
+        /* Why Choose Us Section */
+        .why-choose-us {
+            padding: 80px 0;
+            background-color: #f7f7f7;
+            text-align: center;
+        }
 
-.why-choose-us h2 {
-    margin-bottom: 40px;
-    font-size: 2.5rem;
-    font-weight: 700;
-}
+        .why-choose-us h2 {
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
 
-.why-choose-us .feature-box {
-    padding: 20px;
-    transition: all 0.3s ease;
-}
+        .why-choose-us .feature-box {
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
 
-.why-choose-us .feature-box:hover {
-    transform: translateY(-10px);
-}
+        .why-choose-us .feature-box:hover {
+            transform: translateY(-10px);
+        }
 
-.why-choose-us .feature-box i {
-    color: #4ABDAC;
-    margin-bottom: 15px;
-    transition: color 0.3s ease;
-}
+        .why-choose-us .feature-box i {
+            color: #4ABDAC;
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
 
-.why-choose-us .feature-box:hover i {
-    color: #037D77;
-}
+        .why-choose-us .feature-box:hover i {
+            color: #037D77;
+        }
 
-.why-choose-us h4 {
-    font-size: 1.5rem;
-    font-weight: 600;
-}
+        .why-choose-us h4 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
 
-/* Travel Destinations Section */
-.destinations {
-    background-color: #f9f9f9;
-    padding: 60px 0;
-}
+        /* Travel Destinations Section */
+        .destinations {
+            background-color: #f9f9f9;
+            padding: 60px 0;
+        }
 
-.destinations h2 {
-    margin-bottom: 40px;
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: 700;
-}
+        .destinations h2 {
+            margin-bottom: 40px;
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
 
-.destinations .card {
-    transition: all 0.3s ease;
-}
+        .destinations .card {
+            transition: all 0.3s ease;
+        }
 
-.destinations .card:hover {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    transform: translateY(-5px);
-}
+        .destinations .card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+        }
 
-.destinations .card img {
-    height: 200px;
-    object-fit: cover;
-    border-radius: 5px;
-}
+        .destinations .card img {
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
 
-/* Reviews Section */
-.reviews {
-    padding: 60px 0;
-    background-color: #fff;
-}
+        /* Reviews Section */
+        .reviews {
+            padding: 60px 0;
+            background-color: #fff;
+        }
 
-.reviews h2 {
-    margin-bottom: 40px;
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: 700;
-}
+        .reviews h2 {
+            margin-bottom: 40px;
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
 
-.review-item {
-    margin-bottom: 30px;
-    text-align: center;
-    font-size: 1.2rem;
-    color: #555;
-}
+        .review-item {
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 1.2rem;
+            color: #555;
+        }
 
-.review-item small {
-    display: block;
-    margin-top: 10px;
-    color: #888;
-}
+        .review-item small {
+            display: block;
+            margin-top: 10px;
+            color: #888;
+        }
 
-/* Contact Section */
-.contact {
-    background-color: #f9f9f9;
-    padding: 60px 0;
-}
+        /* Contact Section */
+        .contact {
+            background-color: #f9f9f9;
+            padding: 60px 0;
+        }
 
-.contact h2 {
-    margin-bottom: 40px;
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: 700;
-}
+        .contact h2 {
+            margin-bottom: 40px;
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
 
-.contact .map {
-    width: 100%;
-    height: 300px;
-    background-color: #e9ecef;
-    margin-bottom: 30px;
-}
+        .contact .map {
+            width: 100%;
+            height: 300px;
+            background-color: #e9ecef;
+            margin-bottom: 30px;
+        }
 
-/* Footer Styling */
-footer {
-    background-color: #333;
-    color: white;
-    padding: 20px 0;
-}
+        /* Footer Styling */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+        }
 
-footer .social-icons a {
-    color: white;
-    margin: 0 10px;
-    font-size: 1.5rem;
-    transition: color 0.3s ease;
-}
+        footer .social-icons a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
 
-footer .social-icons a:hover {
-    color: #f2e86d;
-}
+        footer .social-icons a:hover {
+            color: #f2e86d;
+        }
 
-/* Login/Registration Forms */
+        /* Login/Registration Forms */
         .login-box {
             display: none;
             background-color: rgba(255, 255, 255, 0.95);
@@ -344,7 +346,6 @@ footer .social-icons a:hover {
             display: block;
             opacity: 1;
         }
-
     </style>
 </head>
 
@@ -387,7 +388,7 @@ footer .social-icons a:hover {
         </div>
     </section>
 
-     <!-- Hidden Login/Registration Forms -->
+    <!-- Hidden Login/Registration Forms -->
     <div class="login-box" id="login-box">
         <form id="login-form" action="index.php" method="POST">
             <h3>Login</h3>
@@ -448,7 +449,7 @@ footer .social-icons a:hover {
                     <p>Book your trips easily with our user-friendly platform.</p>
                 </div>
                 <div class="col-md-4 feature-box">
-                    <i class="fas fa-user-friends fa-3x mb-3"></i> 
+                    <i class="fas fa-user-friends fa-3x mb-3"></i>
                     <h4>Personalized Service</h4>
                     <p>We offer tailored travel planning to ensure you have a unique experience.</p>
                 </div>
@@ -491,82 +492,82 @@ footer .social-icons a:hover {
             </div>
         </div>
     </section>
-<!-- Reviews Section -->
-<section class="reviews" id="reviews">
-    <div class="container">
-        <h2>What Our Customers Say</h2>
+    <!-- Reviews Section -->
+    <section class="reviews" id="reviews">
+        <div class="container">
+            <h2>What Our Customers Say</h2>
 
-        <!-- Carousel -->
-        <div id="reviewsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000"> 
-            <div class="carousel-inner">
-                <!-- Slide 1 -->
-                <div class="carousel-item active">
-                    <div class="row">
-                        <div class="col-md-4 review-item">
-                            <p>"Thank you for the warm welcome at puerto galera mam and sir, our puerto trip wont be the best without  you, since day 1 up to the last. From accommodation and tour very wort it. Highly recommended  indeed... thank you and Godbless. Til we meet again ❤️"</p>
-                            <small>Ms. Richee</small>
-                        </div>
-                        <div class="col-md-4 review-item">
-                            <p>"Hiiii! Sorry late na, thank you for accommodating us pala ha. We enjoyed our stay!! Looking forwad na maulit yung tour hahahaha thank you sa smooth transactions! More power to you all ❤️"</p>
-                            <small>Ms. Christine</small>
-                        </div>
-                        <div class="col-md-4 review-item">
-                            <p>"Thank you so much po sa pag-asikaso sa amin. Hassle free talaga at mababait pa ang mga staff. Super enjoy po quick vacation namin ng mister ko 💕
-                                Sa uulitin po. God bless 🙏"</p>
-                            <small>Ms. Mary</small>
+            <!-- Carousel -->
+            <div id="reviewsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+                <div class="carousel-inner">
+                    <!-- Slide 1 -->
+                    <div class="carousel-item active">
+                        <div class="row">
+                            <div class="col-md-4 review-item">
+                                <p>"Thank you for the warm welcome at puerto galera mam and sir, our puerto trip wont be the best without you, since day 1 up to the last. From accommodation and tour very wort it. Highly recommended indeed... thank you and Godbless. Til we meet again ❤️"</p>
+                                <small>Ms. Richee</small>
+                            </div>
+                            <div class="col-md-4 review-item">
+                                <p>"Hiiii! Sorry late na, thank you for accommodating us pala ha. We enjoyed our stay!! Looking forwad na maulit yung tour hahahaha thank you sa smooth transactions! More power to you all ❤️"</p>
+                                <small>Ms. Christine</small>
+                            </div>
+                            <div class="col-md-4 review-item">
+                                <p>"Thank you so much po sa pag-asikaso sa amin. Hassle free talaga at mababait pa ang mga staff. Super enjoy po quick vacation namin ng mister ko 💕
+                                    Sa uulitin po. God bless 🙏"</p>
+                                <small>Ms. Mary</small>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- Slide 2 -->
-                <div class="carousel-item">
-                    <div class="row">
-                        <div class="col-md-4 review-item">
-                            <p>"Thank You White Beach Puerto Galera Tour
+                    <!-- Slide 2 -->
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col-md-4 review-item">
+                                <p>"Thank You White Beach Puerto Galera Tour
 
-                                Kuddos!!!! To Ate Dora as always lagi kaming asiskaso nya"</p>
-                            <small>Sir Oliver</small>
+                                    Kuddos!!!! To Ate Dora as always lagi kaming asiskaso nya"</p>
+                                <small>Sir Oliver</small>
+                            </div>
+                            <div class="col-md-4 review-item">
+                                <p>"Hello po. Thank you so much po. Super sulit ng buong package. Sa uulitin po ☺️"</p>
+                                <small>Ms. Jasmine</small>
+                            </div>
+                            <div class="col-md-4 review-item">
+                                <p>"Sobrang thank you po sa pagtanggap ng booking namin kahit sobrang alanganin ng time. Sorry po kung makulit ako. Super satisfied po at saya ng mga kasama namin. Mabait din po ng mga kasama niyo dito. Thank youu po ng marami ulit. Sa uulitin ♥️"</p>
+                                <small>Ms. Pauu</small>
+                            </div>
                         </div>
-                        <div class="col-md-4 review-item">
-                            <p>"Hello po. Thank you so much po. Super sulit ng buong package. Sa uulitin po ☺️"</p>
-                            <small>Ms. Jasmine</small>
-                        </div>
-                        <div class="col-md-4 review-item">
-                            <p>"Sobrang thank you po sa pagtanggap ng booking namin kahit sobrang alanganin ng time. Sorry po kung makulit ako. Super satisfied po at saya ng mga kasama namin. Mabait din po ng mga kasama niyo dito. Thank youu po ng marami ulit. Sa uulitin ♥️"</p>
-                            <small>Ms. Pauu</small>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col-md-4 review-item">
+                                <p>"Hi, thank you sa hassle free na bakasyon namin. Thank you sa mabait na kausap namin dito sa Matt travel and tours (super accommodating), si ate Alona na tour guide namin, sa mga bankero namin, sa pinag stay-an at sa mga drivers. Sa susunod ulit! Nag enjoy po kami. Maraming maraming salamat"</p>
+                                <small>Ms. Jecka</small>
+                            </div>
+                            <div class="col-md-4 review-item">
+                                <p>"Hello po, thank you so much po for accommodating us nag enjoy po kame!! Also salamat po sa pag answer ng mga questions namen sa uulutin po!!"</p>
+                                <small>Ms. Ria</small>
+                            </div>
+                            <div class="col-md-4 review-item">
+                                <p>"thank you po sa magandang experience ng puerto galera namin, pag bumalik po kami jan ulit sa inyo"</p>
+                                <small>Ms. Bhabes</small>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- Slide 3 -->
-                <div class="carousel-item">
-                    <div class="row">
-                        <div class="col-md-4 review-item">
-                            <p>"Hi, thank you sa hassle free na bakasyon namin. Thank you sa mabait na kausap namin dito sa Matt travel and tours (super accommodating), si ate Alona na tour guide namin, sa mga bankero namin, sa pinag stay-an at sa mga drivers. Sa susunod ulit! Nag enjoy po kami. Maraming maraming salamat"</p>
-                            <small>Ms. Jecka</small>
-                        </div>
-                        <div class="col-md-4 review-item">
-                            <p>"Hello po, thank you so much po for accommodating us nag enjoy po kame!! Also salamat po sa pag answer ng mga questions namen sa uulutin po!!"</p>
-                            <small>Ms. Ria</small>
-                        </div>
-                        <div class="col-md-4 review-item">
-                            <p>"thank you po sa magandang experience ng puerto galera namin, pag bumalik po kami jan ulit sa inyo"</p>
-                            <small>Ms. Bhabes</small>
-                        </div>
-                    </div>
-                </div>
+
+                <!-- Carousel Controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
-
-            <!-- Carousel Controls -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
         </div>
-    </div>
-</section>
+    </section>
 
 
     <!-- Contact Section with Map -->
@@ -593,7 +594,7 @@ footer .social-icons a:hover {
                 </div>
                 <div class="col-md-6">
                     <div class="map">
-                        <iframe 
+                        <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7758.9092368359015!2d120.89438329559155!3d13.507669094095839!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bcf87d834d9f2b%3A0xfb09a13453794531!2sWhite%20Beach!5e0!3m2!1sen!2sph!4v1727637151658!5m2!1sen!2sph"
                             width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
@@ -604,30 +605,30 @@ footer .social-icons a:hover {
 
     <!-- Footer Section -->
     <footer class="bg-dark text-white text-center py-4">
-    <div class="container">
-        <p>&copy; 2024 Matt Travel and Tours. All rights reserved.</p>
-        
-        <!-- DOT Accreditation -->
-        <p>DOT Accredited. License No: <strong>12345-6789</strong></p>
-        
-        <!-- Additional Contact Information -->
-        <p>Email: <a href="mailto:info.pgph@gmail.com" class="text-white">info.pgph@gmail.com</a> | Phone: <a href="tel:+639123456789" class="text-white">+63 912 345 6789</a></p>
-        
-        <!-- Operating Hours -->
-        <p>Operating Hours: Mon - Sun, 8:00 AM - 12:00 AM</p>
+        <div class="container">
+            <p>&copy; 2024 Matt Travel and Tours. All rights reserved.</p>
 
-        <!-- Social Media Icons -->
-        <div class="social-icons">
-            <a href="https://web.facebook.com/PuertoGaleraAdventures/" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+            <!-- DOT Accreditation -->
+            <p>DOT Accredited. License No: <strong>12345-6789</strong></p>
+
+            <!-- Additional Contact Information -->
+            <p>Email: <a href="mailto:info.pgph@gmail.com" class="text-white">info.pgph@gmail.com</a> | Phone: <a href="tel:+639123456789" class="text-white">+63 912 345 6789</a></p>
+
+            <!-- Operating Hours -->
+            <p>Operating Hours: Mon - Sun, 8:00 AM - 12:00 AM</p>
+
+            <!-- Social Media Icons -->
+            <div class="social-icons">
+                <a href="https://web.facebook.com/PuertoGaleraAdventures/" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+            </div>
+
+            <!-- Legal Links -->
+            <div class="mt-3">
+                <a href="/terms" class="text-white me-3">Terms & Conditions</a>
+                <a href="/privacy-policy" class="text-white">Privacy Policy</a>
+            </div>
         </div>
-        
-        <!-- Legal Links -->
-        <div class="mt-3">
-            <a href="/terms" class="text-white me-3">Terms & Conditions</a>
-            <a href="/privacy-policy" class="text-white">Privacy Policy</a>
-        </div>
-    </div>
-</footer>
+    </footer>
 
 
     <!-- Bootstrap JS -->
@@ -635,7 +636,7 @@ footer .social-icons a:hover {
 
     <!-- Script for toggling Login/Register -->
     <script>
-           function showLogin() {
+        function showLogin() {
             document.getElementById('login-box').style.display = 'block';
             document.getElementById('login-form').style.display = 'block';
             document.getElementById('register-form').style.display = 'none';
@@ -649,7 +650,7 @@ footer .social-icons a:hover {
 
         // Keep login form visible if there is an error
         <?php if ($show_login_form): ?>
-        showLogin();
+            showLogin();
         <?php endif; ?>
     </script>
 
