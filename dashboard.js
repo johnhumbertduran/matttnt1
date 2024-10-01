@@ -983,10 +983,14 @@ document.getElementById('confirmBookingBtn').addEventListener('click', function 
     const contactNumber = document.getElementById('contactNumber').value;
     const totalAmount = document.getElementById('totalPriceSummary').innerText.replace('Total Amount: ₱', '');
 
+    // Get the username and email values from the hidden fields
+    const username = document.getElementById('hiddenUsername').value;
+    const email = document.getElementById('hiddenEmail').value;
+
     // Prepare the data to send
     const bookingData = {
-        username: "<?php echo htmlspecialchars($user['username']); ?>",
-        email: "<?php echo htmlspecialchars($user['email']); ?>",
+        username: username,
+        email: email,
         contactNumber: contactNumber,
         totalAmount: totalAmount,
 
